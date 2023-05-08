@@ -5,7 +5,7 @@ const productsArray = [
     name: "Robot",
     price: "R$250,00",
     type: "Paintings",
-  },  
+  },
   // Produto 2
   {
     image: "./assets/img/actions/dragonball-action-figure.jpg",
@@ -78,8 +78,6 @@ const productsArray = [
   },
 ];
 
-// Código abaixo desenvolvido por Daniel Neves Fonseca
-
 const actionFiguresArray = [];
 const paintingsArray = [];
 
@@ -95,100 +93,96 @@ function separateItems(productsArray) {
 }
 separateItems(productsArray);
 
-// criação e inserção da logo no body
-const logo = document.createElement('img');
-logo.src = 'logo.svg';
-logo.style.cursor = 'pointer';
-document.querySelector('header').appendChild(logo);
+function insertElementsInHeader() {
+  const logo = document.createElement('img');
+  logo.src = 'logo.svg';
+  logo.style.cursor = 'pointer';
+  document.querySelector('header').appendChild(logo);
 
-// criação e inserção da uma ul no header
-const boxBotoes = document.createElement('ul');
-boxBotoes.id = 'box-botoes';
-document.querySelector('header').appendChild(boxBotoes);
+  const boxButtons = document.createElement('ul');
+  boxButtons.id = 'box-buttons';
+  document.querySelector('header').appendChild(boxButtons);
 
-// criação e inserção dos botoes na ul
-const botaoProducts = document.createElement('li');
-botaoProducts.innerText = 'Products';
-document.querySelector('#box-botoes').appendChild(botaoProducts);
+  const productsButton = document.createElement('li');
+  productsButton.innerText = 'Products';
+  document.querySelector('#box-buttons').appendChild(productsButton);
 
-const botaoContact = document.createElement('li');
-botaoContact.innerText = 'Contact';
-document.querySelector('ul').appendChild(botaoContact);
+  const contactButton = document.createElement('li');
+  contactButton.innerText = 'Contact';
+  document.querySelector('ul').appendChild(contactButton);
+}
 
-// criação e inserção dos titulos nas sections no main
-const tituloPaintings = document.createElement('h1');
-tituloPaintings.innerText = 'Paintings';
-tituloPaintings.id = 'paintings-titulo';
-document.querySelector('.paintings').appendChild(tituloPaintings);
+const paintingsTitle = document.createElement('h2');
+paintingsTitle.innerText = 'Paintings';
+paintingsTitle.id = 'paintings-title';
+document.querySelector('.paintings').appendChild(paintingsTitle);
 
-const tituloActionFigures = document.createElement('h1');
-tituloActionFigures.innerText = 'Action Figures';
-tituloActionFigures.id = 'action-figures-titulo';
-document.querySelector('.action-figures').appendChild(tituloActionFigures);
+const titleActionFigures = document.createElement('h2');
+titleActionFigures.innerText = 'Action Figures';
+titleActionFigures.id = 'action-figures-title';
+document.querySelector('.action-figures').appendChild(titleActionFigures);
 
-//  criação e inserção container do modelo caixa de produtos
-const containerProdutosPaintings = document.createElement('div');
-containerProdutosPaintings.className = 'container-produtos-paintings';
-document.querySelector('.paintings').appendChild(containerProdutosPaintings);
+const containerProductsPaintings = document.createElement('ul');
+containerProductsPaintings.className = 'container-products-paintings';
+document.querySelector('.paintings').appendChild(containerProductsPaintings);
 
-const containerProdutosActFigures = document.createElement('div');
-containerProdutosActFigures.className = 'container-produtos-action-figures';
-document.querySelector('.action-figures').appendChild(containerProdutosActFigures);
+const containerProductsActionFigures = document.createElement('ul');
+containerProductsActionFigures.className = 'container-products-action-figures';
+document.querySelector('.action-figures').appendChild(containerProductsActionFigures);
 
 function createPaintingCards(paintingsList) {
   for (let i = 0; i < paintingsList.length; i++) {
-    const boxProduto = document.createElement('div');
-    boxProduto.className = 'box-produto-p';
-    // imagem dentro da caixa de produtos
-    const imagemProduto = document.createElement('img');
-    imagemProduto.src = paintingsList[i].image;
-    imagemProduto.id = 'imagem-produto';
+    const boxProduct = document.createElement('li');
+    boxProduct.className = 'box-product-p';
 
-    // título nome do produto
-    const nomeProduto = document.createElement('h2');
-    nomeProduto.id = 'titulo-nome-produto';
-    nomeProduto.innerText = paintingsList[i].name;
+    const productImage = document.createElement('img');
+    productImage.src = paintingsList[i].image;
+    productImage.id = 'image-product';
 
-    // preço do produto
-    const precoProduto = document.createElement('p');
-    precoProduto.id = 'preco-produto';
-    precoProduto.innerText = paintingsList[i].price;
+    const nameProduct = document.createElement('h3');
+    nameProduct.id = 'title-product-name';
+    nameProduct.innerText = paintingsList[i].name;
 
-    document.querySelector('.container-produtos-paintings').appendChild(boxProduto);
-    document.querySelectorAll('.box-produto-p')[i].appendChild(imagemProduto);
-    document.querySelectorAll('.box-produto-p')[i].appendChild(nomeProduto);
-    document.querySelectorAll('.box-produto-p')[i].appendChild(precoProduto);
+    const priceProduct = document.createElement('p');
+    priceProduct.id = 'price-product';
+    priceProduct.innerText = paintingsList[i].price;
+
+    document.querySelector('.container-products-paintings').appendChild(boxProduct);
+    document.querySelectorAll('.box-product-p')[i].appendChild(productImage);
+    document.querySelectorAll('.box-product-p')[i].appendChild(nameProduct);
+    document.querySelectorAll('.box-product-p')[i].appendChild(priceProduct);
   }
 }
-createPaintingCards(paintingsArray);
 
 function createActionFigCards(actionFigList) {
   for (let i = 0; i < actionFigList.length; i++) {
-    const boxProduto = document.createElement('div');
-    boxProduto.className = 'box-produto-af';
-    // imagem dentro da caixa de produtos
-    const imagemProduto = document.createElement('img');
-    imagemProduto.src = actionFigList[i].image;
-    imagemProduto.id = 'imagem-produto';
+    const boxProduct = document.createElement('li');
+    boxProduct.className = 'box-product-af';
 
-    // título nome do produto
-    const nomeProduto = document.createElement('h2');
-    nomeProduto.id = 'titulo-nome-produto';
-    nomeProduto.innerText = actionFigList[i].name;
+    const productImage = document.createElement('img');
+    productImage.src = actionFigList[i].image;
+    productImage.id = 'image-product';
 
-    // preço do produto
-    const precoProduto = document.createElement('p');
-    precoProduto.id = 'preco-produto';
-    precoProduto.innerText = actionFigList[i].price;
+    const nameProduct = document.createElement('h3');
+    nameProduct.id = 'title-product-name';
+    nameProduct.innerText = actionFigList[i].name;
 
-    document.querySelector('.container-produtos-action-figures').appendChild(boxProduto);
-    document.querySelectorAll('.box-produto-af')[i].appendChild(imagemProduto);
-    document.querySelectorAll('.box-produto-af')[i].appendChild(nomeProduto);
-    document.querySelectorAll('.box-produto-af')[i].appendChild(precoProduto);
+    const priceProduct = document.createElement('p');
+    priceProduct.id = 'price-product';
+    priceProduct.innerText = actionFigList[i].price;
 
+    document.querySelector('.container-products-action-figures').appendChild(boxProduct);
+    document.querySelectorAll('.box-product-af')[i].appendChild(productImage);
+    document.querySelectorAll('.box-product-af')[i].appendChild(nameProduct);
+    document.querySelectorAll('.box-product-af')[i].appendChild(priceProduct);
   }
 }
+// chamada da função da montagem do header
+insertElementsInHeader();
+
+// chamadas das funções construtoras de cards
 createActionFigCards(actionFiguresArray);
+createPaintingCards(paintingsArray);
 
 
 
