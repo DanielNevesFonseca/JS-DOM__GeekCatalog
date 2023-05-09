@@ -1,3 +1,9 @@
+// variáveis globais
+let paintingsTitle;
+let containerProductsPaintings;
+let titleActionFigures;
+let containerProductsActionFigures;
+
 const productsArray = [
   // Produto 1
   {
@@ -111,42 +117,49 @@ function insertElementsInHeader() {
   contactButton.innerText = 'Contact';
   document.querySelector('ul').appendChild(contactButton);
 }
+function createPaintingsElements() {
+  paintingsTitle = document.createElement('h2');
+  paintingsTitle.innerText = 'Paintings';
+  paintingsTitle.id = 'paintings-title';
 
-const paintingsTitle = document.createElement('h2');
-paintingsTitle.innerText = 'Paintings';
-paintingsTitle.id = 'paintings-title';
-document.querySelector('.paintings').appendChild(paintingsTitle);
+  containerProductsPaintings = document.createElement('ul');
+  containerProductsPaintings.className = 'container-products-paintings';
+}
+function createActionFiguresElements() { 
+  titleActionFigures = document.createElement('h2');
+  titleActionFigures.innerText = 'Action Figures';
+  titleActionFigures.id = 'action-figures-title';
+  containerProductsActionFigures = document.createElement('ul');
+  containerProductsActionFigures.className = 'container-products-action-figures';
+}
 
-const titleActionFigures = document.createElement('h2');
-titleActionFigures.innerText = 'Action Figures';
-titleActionFigures.id = 'action-figures-title';
-document.querySelector('.action-figures').appendChild(titleActionFigures);
+function insertPaintingsElementsInSection(){
+  document.querySelector('.paintings').appendChild(paintingsTitle);
+  document.querySelector('.paintings').appendChild(containerProductsPaintings);
+}
 
-const containerProductsPaintings = document.createElement('ul');
-containerProductsPaintings.className = 'container-products-paintings';
-document.querySelector('.paintings').appendChild(containerProductsPaintings);
-
-const containerProductsActionFigures = document.createElement('ul');
-containerProductsActionFigures.className = 'container-products-action-figures';
-document.querySelector('.action-figures').appendChild(containerProductsActionFigures);
+function insertActionFiguresElementsInSection(){
+  document.querySelector('.action-figures').appendChild(titleActionFigures);
+  document.querySelector('.action-figures').appendChild(containerProductsActionFigures);
+}
 
 function createPaintingCards(paintingsList) {
   for (let i = 0; i < paintingsList.length; i++) {
     const boxProduct = document.createElement('li');
     boxProduct.className = 'box-product-p';
-
+    
     const productImage = document.createElement('img');
     productImage.src = paintingsList[i].image;
     productImage.id = 'image-product';
-
+    
     const nameProduct = document.createElement('h3');
     nameProduct.id = 'title-product-name';
     nameProduct.innerText = paintingsList[i].name;
-
+    
     const priceProduct = document.createElement('p');
     priceProduct.id = 'price-product';
     priceProduct.innerText = paintingsList[i].price;
-
+    
     document.querySelector('.container-products-paintings').appendChild(boxProduct);
     document.querySelectorAll('.box-product-p')[i].appendChild(productImage);
     document.querySelectorAll('.box-product-p')[i].appendChild(nameProduct);
@@ -158,29 +171,30 @@ function createActionFigCards(actionFigList) {
   for (let i = 0; i < actionFigList.length; i++) {
     const boxProduct = document.createElement('li');
     boxProduct.className = 'box-product-af';
-
+    
     const productImage = document.createElement('img');
     productImage.src = actionFigList[i].image;
     productImage.id = 'image-product';
-
+    
     const nameProduct = document.createElement('h3');
     nameProduct.id = 'title-product-name';
     nameProduct.innerText = actionFigList[i].name;
-
+    
     const priceProduct = document.createElement('p');
     priceProduct.id = 'price-product';
     priceProduct.innerText = actionFigList[i].price;
-
+    
     document.querySelector('.container-products-action-figures').appendChild(boxProduct);
     document.querySelectorAll('.box-product-af')[i].appendChild(productImage);
     document.querySelectorAll('.box-product-af')[i].appendChild(nameProduct);
     document.querySelectorAll('.box-product-af')[i].appendChild(priceProduct);
   }
 }
-// chamada da função da montagem do header
 insertElementsInHeader();
-
-// chamadas das funções construtoras de cards
+createPaintingsElements();
+insertPaintingsElementsInSection();
+createActionFiguresElements();
+insertActionFiguresElementsInSection();
 createActionFigCards(actionFiguresArray);
 createPaintingCards(paintingsArray);
 
